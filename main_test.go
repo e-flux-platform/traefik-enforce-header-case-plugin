@@ -6,7 +6,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/swtch-energy/traefik-enforce-header-case-plugin"
+	"github.com/e-flux-platform/traefik-enforce-header-case-plugin"
 )
 
 func preparePlugin(t *testing.T) (context.Context, *traefik_enforce_header_case_plugin.Config, http.Handler) {

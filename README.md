@@ -1,6 +1,6 @@
 # Traefik Enforce Header Case Plugin
 
-![Build Status](https://github.com/swtch-energy/traefik-enforce-header-case-plugin/workflows/Main/badge.svg) [![Latest Release](https://img.shields.io/github/v/release/swtch-energy/traefik-enforce-header-case-plugin?include_prereleases&sort=semver)](https://github.com/swtch-energy/traefik-enforce-header-case-plugin/releases)
+*Note: this is a hard fork of https://github.com/swtch-energy/traefik-enforce-header-case-plugin*
 
 A [Traefik](https://traefik.io/) middleware plugin which enforces the case of specified request and response headers.
 
@@ -42,7 +42,7 @@ From [Working with Traefik Plugins](https://plugins.traefik.io/install): put the
 **Important:** The path is relative to the **Traefik process current working directory** (not necessarily where the binary lives). On systemd, set `WorkingDirectory=...`; in Docker, set `WORKDIR` or the container `command` / `workdir` so that `./plugins-local/src/...` exists from that directory.
 
 **Manifest error (`open .../.traefik.yml: no such file or directory`):** The whole module tree must be present, including the hidden [`.traefik.yml`](.traefik.yml) at the plugin root. A partial copy (only `main.go` / `go.mod`) is not enough. If you use Docker, ensure `COPY` (or the image build context) does **not** skip dotfiles: many `.dockerignore` patterns or explicit `COPY main.go` omit `.traefik.yml`. As a check, from the same working directory Traefik uses, run:  
-`test -f plugins-local/src/github.com/swtch-energy/traefik-enforce-header-case-plugin/.traefik.yml`  
+`test -f plugins-local/src/github.com/e-flux-platform/traefik-enforce-header-case-plugin/.traefik.yml`  
 (or adjust the org/repo segment to match your `moduleName`).
 
 ## Configuration
@@ -53,19 +53,19 @@ From [Working with Traefik Plugins](https://plugins.traefik.io/install): put the
 experimental:
   plugins:
     enforceHeaderCase:
-      moduleName: github.com/swtch-energy/traefik-enforce-header-case-plugin
+      moduleName: github.com/e-flux-platform/traefik-enforce-header-case-plugin
       version: v0.1.1
 ```
 
 ### Static (local mode; same `moduleName` as in `go.mod`)
 
-Working directory of the Traefik process must contain `plugins-local/src/<import path>/` (e.g. clone this repository to `plugins-local/src/github.com/swtch-energy/traefik-enforce-header-case-plugin`).
+Working directory of the Traefik process must contain `plugins-local/src/<import path>/` (e.g. clone this repository to `plugins-local/src/github.com/e-flux-platform/traefik-enforce-header-case-plugin`).
 
 ```yaml
 experimental:
   localPlugins:
     enforceHeaderCase:
-      moduleName: github.com/swtch-energy/traefik-enforce-header-case-plugin
+      moduleName: github.com/e-flux-platform/traefik-enforce-header-case-plugin
 ```
 
 Dynamic `plugin.enforceHeaderCase` blocks stay the same; only the static `experimental` section changes from `plugins` to `localPlugins`.
